@@ -1,0 +1,26 @@
+:root {
+  /* 理想视窗宽度，就是设计稿宽度 */ 
+  --ideal-viewport-width: 1600;
+  
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+body {
+  font-family: 'Hind', sans-serif;
+  background: #F2F2F2;
+}
+
+.root {
+  display: flex;
+}
