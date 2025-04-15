@@ -1,4 +1,6 @@
 import "./App.scss";
+import Example from "./components/Example";
+import ScaledDemo from "./components/ScaledDemo";
 
 interface Tag {
   label: string;
@@ -134,7 +136,7 @@ function App() {
 
   return (
     <div className="root">
-      <nav className="nav">
+      {/* <nav className="nav">
         <div className="navTop">
           <div className="circle"></div>
         </div>
@@ -223,7 +225,11 @@ function App() {
               );
             })}
         </div>
-      </main>
+      </main> */}
+
+      {/* Example component to demonstrate SCSS and Tailwind CSS integration */}
+      {/* <Example /> */}
+      <ScaledDemo />
     </div>
   );
 }

@@ -1,0 +1,64 @@
+// SCSS variables
+$primary-color: #8a2be2;
+$secondary-color: #ff6347;
+$border-radius: 8px;
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+.example-component {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border-radius: $border-radius;
+  background-color: #fff;
+  box-shadow: $box-shadow;
+  
+  .example-title {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: $primary-color;
+    font-size: 1.5rem;
+  }
+  
+  .scss-section {
+    padding: 1rem;
+    background-color: rgba($primary-color, 0.1);
+    border-radius: $border-radius;
+    
+    h3 {
+      color: ions($primary-color, 10%);
+      margin-bottom: 0.75rem;
+    }
+    
+    .scss-button {
+      background-color: $primary-color;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: $border-radius / 2;
+      transition: background-color 0.3s ease;
+      
+      &:hover {
+        background-color: ions($primary-color, 15%);
+      }
+    }
+  }
+  
+  .mixed-section {
+    padding: 1rem;
+    background-color: rgba($secondary-color, 0.1);
+    border-radius: $border-radius;
+    
+    .mixed-button {
+      background-color: $secondary-color;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: $border-radius / 2;
+      transition: background-color 0.3s ease;
+      
+      &:hover {
+        background-color: ions($secondary-color, 15%);
+      }
+    }
+  }
+} 

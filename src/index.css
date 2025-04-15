@@ -1,10 +1,92 @@
+@import "tailwindcss";
+
 :root {
-  /* 理想视窗宽度，就是设计稿宽度 */ 
-  --ideal-viewport-width: 1600;
-  
+  --min-viewport: 320px;
+  --max-viewport: 3480px;
+  --ideal-viewport: 1600;
+  --scale-ratio: calc(clamp(var(--min-viewport), 100vw, var(--max-viewport)) / var(--ideal-viewport));
 }
 
+@layer utilities {
+  /* 动态计算的基础选择器 */
+  [class*="sv-w-"] {
+    width: calc(var(--sv-width, 0) * var(--scale-ratio));
+  }
 
+  [class*="sv-h-"] {
+    height: calc(var(--sv-height, 0) * var(--scale-ratio));
+  }
+
+  [class*="sv-text-"] {
+    font-size: calc(var(--sv-font-size, 0) * var(--scale-ratio));
+  }
+
+  [class*="sv-mt-"] {
+    margin-top: calc(var(--sv-margin-top, 0) * var(--scale-ratio));
+  }
+
+  [class*="sv-mb-"] {
+    margin-bottom: calc(var(--sv-margin-bottom, 0) * var(--scale-ratio));
+  }
+
+  [class*="sv-p-"] {
+    padding: calc(var(--sv-padding, 0) * var(--scale-ratio));
+  }
+
+  [class*="sv-py-"] {
+    padding-top: calc(var(--sv-padding-y, 0) * var(--scale-ratio));
+    padding-bottom: calc(var(--sv-padding-y, 0) * var(--scale-ratio));
+  }
+
+  [class*="sv-rounded-"] {
+    border-radius: calc(var(--sv-radius, 0) * var(--scale-ratio));
+  }
+
+  /* 预设值 */
+  .sv-w-692 { --sv-width: 692; }
+  .sv-w-50 { --sv-width: 50; }
+  .sv-h-50 { --sv-height: 50; }
+  .sv-text-40 { --sv-font-size: 40; }
+  .sv-text-22 { --sv-font-size: 22; }
+  .sv-text-18 { --sv-font-size: 18; }
+  .sv-text-16 { --sv-font-size: 16; }
+  .sv-mt-32 { --sv-margin-top: 32; }
+  .sv-mb-12 { --sv-margin-bottom: 12; }
+  .sv-p-20 { --sv-padding: 20; }
+  .sv-py-20 { --sv-padding-y: 20; }
+  .sv-rounded-10 { --sv-radius: 10; }
+
+  /* 同时设置宽高的特殊情况 */
+  .sv-50 {
+    --sv-width: 50;
+    --sv-height: 50;
+    width: calc(var(--sv-width) * var(--scale-ratio));
+    height: calc(var(--sv-height) * var(--scale-ratio));
+  }
+}
+
+/* Custom base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+body {
+  font-family: 'Hind', sans-serif;
+  background: #F2F2F2;
+}
+
+.root {
+  display: flex;
+}
+
+/* Custom base styles that don't conflict with Tailwind */
 * {
   margin: 0;
   padding: 0;
