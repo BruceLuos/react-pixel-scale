@@ -29,8 +29,17 @@
     margin-bottom: calc(var(--sv-margin-bottom, 0) * var(--scale-ratio));
   }
 
+  [class*="sv-mr-"] {
+    margin-right: calc(var(--sv-margin-right, 0) * var(--scale-ratio));
+  }
+
   [class*="sv-p-"] {
     padding: calc(var(--sv-padding, 0) * var(--scale-ratio));
+  }
+
+  [class*="sv-px-"] {
+    padding-left: calc(var(--sv-padding-x, 0) * var(--scale-ratio));
+    padding-right: calc(var(--sv-padding-x, 0) * var(--scale-ratio));
   }
 
   [class*="sv-py-"] {
@@ -38,23 +47,67 @@
     padding-bottom: calc(var(--sv-padding-y, 0) * var(--scale-ratio));
   }
 
+  [class*="sv-pl-"] {
+    padding-left: calc(var(--sv-padding-left, 0) * var(--scale-ratio));
+  }
+
+  [class*="sv-pr-"] {
+    padding-right: calc(var(--sv-padding-right, 0) * var(--scale-ratio));
+  }
+
   [class*="sv-rounded-"] {
     border-radius: calc(var(--sv-radius, 0) * var(--scale-ratio));
   }
 
-  /* 预设值 */
+  /* 预设值 - 宽度 */
   .sv-w-692 { --sv-width: 692; }
+  .sv-w-96 { --sv-width: 96; }
   .sv-w-50 { --sv-width: 50; }
+  .sv-w-44 { --sv-width: 44; }
+  .sv-w-36 { --sv-width: 36; }
+  .sv-w-12 { --sv-width: 12; }
+
+  /* 预设值 - 高度 */
+  .sv-h-80 { --sv-height: 80; }
   .sv-h-50 { --sv-height: 50; }
+  .sv-h-44 { --sv-height: 44; }
+  .sv-h-36 { --sv-height: 36; }
+  .sv-h-12 { --sv-height: 12; }
+
+  /* 预设值 - 字体大小 */
   .sv-text-40 { --sv-font-size: 40; }
   .sv-text-22 { --sv-font-size: 22; }
+  .sv-text-20 { --sv-font-size: 20; }
   .sv-text-18 { --sv-font-size: 18; }
   .sv-text-16 { --sv-font-size: 16; }
+  .sv-text-15 { --sv-font-size: 15; }
+  .sv-text-14 { --sv-font-size: 14; }
+
+  /* 预设值 - 边距 */
   .sv-mt-32 { --sv-margin-top: 32; }
+  .sv-mb-50 { --sv-margin-bottom: 50; }
+  .sv-mb-32 { --sv-margin-bottom: 32; }
+  .sv-mb-20 { --sv-margin-bottom: 20; }
   .sv-mb-12 { --sv-margin-bottom: 12; }
+  .sv-mb-6 { --sv-margin-bottom: 6; }
+  .sv-mr-9 { --sv-margin-right: 9; }
+  .sv-mr-8 { --sv-margin-right: 8; }
+  .sv-mr-6 { --sv-margin-right: 6; }
+
+  /* 预设值 - 内边距 */
   .sv-p-20 { --sv-padding: 20; }
+  .sv-p-16 { --sv-padding: 16; }
+  .sv-px-40 { --sv-padding-x: 40; }
+  .sv-px-10 { --sv-padding-x: 10; }
   .sv-py-20 { --sv-padding-y: 20; }
+  .sv-py-5 { --sv-padding-y: 5; }
+  .sv-pl-136 { --sv-padding-left: 136; }
+  .sv-pr-30 { --sv-padding-right: 30; }
+
+  /* 预设值 - 圆角 */
+  .sv-rounded-20 { --sv-radius: 20; }
   .sv-rounded-10 { --sv-radius: 10; }
+  .sv-rounded-4 { --sv-radius: 4; }
 
   /* 同时设置宽高的特殊情况 */
   .sv-50 {

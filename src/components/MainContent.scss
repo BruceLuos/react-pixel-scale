@@ -1,0 +1,253 @@
+/** 
+* @param {Number} $value - 理想尺寸基数，不带任何单位，设计稿对应的元素尺寸值，eg 设计稿元素宽度是500，$value = 500 
+* @param {Number} $idealViewportWidth - 理想视窗宽度基数，不带单位，设计稿的宽度 
+* @param {String} $min - 最小视窗宽度 * @param {String} $max - 最大视窗宽度 
+**/ 
+
+@function scaleValue($value, $idealViewportWidth: 1600, $min: 320px, $max: 3480px) { 
+  @return calc( #{$value} * (clamp(#{$min}, 100vw, #{$max}) / #{$idealViewportWidth})); 
+ }
+ 
+ // Header -------------
+ 
+ .header {
+   padding: #{scaleValue(18)} 0;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+ }
+ 
+ .searchIcon {
+   max-width: #{scaleValue(36)};
+   max-height: #{scaleValue(36)};
+ }
+ 
+ .searchBar {
+   display: flex;
+   align-items: center;
+ }
+ 
+ .searchIcon {
+   display: block;
+   margin-right: #{scaleValue(8)};
+ }
+ 
+ .searchTitle {
+   font-size: #{scaleValue(14)};
+   color: rgba(#000, 0.72);
+ }
+ 
+ .profileSwitcher {
+   display: flex;
+ }
+ 
+ .profileWrapper {
+   position: relative;
+   margin-right: #{scaleValue(9)};
+   &:last-of-type {
+     margin-right: 0;
+   }
+   &.activeProfile {
+     &:before {
+       content: '';
+       position: absolute;
+       bottom: 0;
+       right: 0;
+       width: #{scaleValue(12)};
+       height: #{scaleValue(12)};
+       background: #34B53A;
+       border-radius: 50%;
+     }
+   }
+   img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+   }
+ }
+ 
+ .profile {
+   width: #{scaleValue(44)};
+   height: #{scaleValue(44)};
+   border-radius: 50%;
+   overflow: hidden;
+ }
+ 
+ // Navigation -------------
+ 
+ .nav {
+   width: #{scaleValue(96)};
+   border-top-right-radius: #{scaleValue(20)};
+   border-bottom-right-radius: #{scaleValue(20)};
+   height: 100vh;
+   background: white;
+   position: fixed;
+   top: 0;
+   left: 0;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+ }
+ 
+ .navTop {
+   height: #{scaleValue(80)};
+   border-bottom: 1px solid rgba(#000, 0.12);
+   margin-bottom: #{scaleValue(20)};
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+ 
+ .navLink {
+   margin-bottom: #{scaleValue(20)};
+ }
+ 
+ .circle {
+   width: #{scaleValue(36)};
+   height: #{scaleValue(36)};
+   background: rgba(black, 0.12);
+   border-radius: 50%;
+ }
+ 
+ // List wrapper -------------
+ 
+ .listWrapper {
+   display: flex;
+   justify-content: space-between;
+   margin-bottom: #{scaleValue(50)};
+ }
+ 
+ .list {
+   width: #{scaleValue(692)};
+   padding: #{scaleValue(5)} #{scaleValue(40)};
+   background: white;
+   border-radius: #{scaleValue(10)};
+ }
+ 
+ .listHeading {
+   font-size: #{scaleValue(22)};
+   margin-bottom: #{scaleValue(12)};
+   font-weight: 400;
+   color: rgba(#000, 0.72);
+ }
+ 
+ .listItem {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: #{scaleValue(20)} 0;
+   border-bottom: 1px solid rgba(#000, 0.12);
+   &:last-of-type {
+     border-bottom: 0;
+   }
+ }
+ 
+ .listProfilePic {
+   width: #{scaleValue(50)};
+   height: #{scaleValue(50)};
+   border-radius: 50%;
+ }
+ 
+ .listTime {
+   font-size: #{scaleValue(18)};
+   color: rgba(#000, 0.72);
+   font-weight: 400;
+ }
+ 
+ .listPrice {
+   width: 100%;
+   font-size: #{scaleValue(22)};
+   display: flex;
+   justify-content: flex-end;
+ }
+ 
+ .listCell {
+   width: 30%;
+   display: flex;
+   align-items: center;
+ }
+ 
+ // Timeline feed -------------
+ 
+ .main {
+   padding-left: #{scaleValue(136)};
+   padding-right: #{scaleValue(30)};
+ }
+ 
+ .columnsWrapper {
+   display: flex;
+   align-items: flex-start;
+   justify-content: space-between;
+ }
+ 
+ .column {
+   width: calc(25% - #{scaleValue(40)});
+ }
+ 
+ .feedItem {
+   position: relative;
+   margin-bottom: #{scaleValue(50)};
+   border-radius: #{scaleValue(10)};
+   overflow: hidden;
+   background: white;
+ }
+ 
+ .feedDesc {
+   // margin: #{scaleValue(32)} 0 0 0;
+   font-size: #{scaleValue(16)};
+ }
+ 
+ .feedTags {
+   margin-bottom: #{scaleValue(var(--ref-margin-bottom))};
+ }
+ 
+ .feedTag {
+   display: inline-block;
+   margin-right: #{scaleValue(6)};
+   margin-bottom: #{scaleValue(6)};
+   padding: #{scaleValue(5)} #{scaleValue(10)};
+   border-radius: #{scaleValue(4)};
+   font-size: #{scaleValue(15)};
+   color: #111;
+   
+   &:last-of-type {
+     margin-right: 0;
+   }
+ }
+ 
+ .feedTitle {
+   font-size: #{scaleValue(40)};
+ }
+ 
+ .feedItemLink {
+   
+ }
+ 
+ .feedButton {
+   margin-top: #{scaleValue(32)};
+   font-size: #{scaleValue(20)};
+   color: #4339F2;
+   background: none;
+   border: none;
+ }
+ 
+ .feedItemBG {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   z-index: 1;
+ }
+ 
+ .feedWrapper {
+   padding: #{scaleValue(16)} #{scaleValue(20)};
+   position: relative;
+   z-index: 2;
+   &.hasBackground {
+     background: rgba(black, 0.3);    
+     color: white;
+   }
+ }
+ 

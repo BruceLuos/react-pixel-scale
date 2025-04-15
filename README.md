@@ -73,7 +73,7 @@ export default tseslint.config({
 }
 ```
 
-在tailwind css使用的一些配置
+在tailwind css v3 可能有用的配置
 
 ```js
 // tailwind.config.js
@@ -156,3 +156,7 @@ module.exports = {
 <div class="scale-p-16 scale-px-20">内容区域</div>
 
 ```
+
+### Tailwind Css v4 参考
+https://www.youtube.com/watch?v=6biMWgD6_JY
+https://tailwindcss.com/docs/theme
