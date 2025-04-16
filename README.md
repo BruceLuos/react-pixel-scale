@@ -73,89 +73,130 @@ export default tseslint.config({
 }
 ```
 
-在tailwind css v3 可能有用的配置
+在tailwind css v4中设置
+```css
+@import "tailwindcss";
 
-```js
-// tailwind.config.js
-const plugin = require('tailwindcss/plugin')
-
-module.exports = {
-  theme: {
-    extend: {
-      // 定义理想视窗宽度
-      variables: {
-        '--ideal-viewport-width': '1600',
-      }
-    },
-  },
-  plugins: [
-    // 创建scaleValue插件
-    plugin(function({ addUtilities, theme, e }) {
-      // 生成缩放工具类
-      const scaleUtilities = {}
-      
-      // 生成一些常用尺寸的缩放类
-      const sizes = Array.from({ length: 200 }, (_, i) => i + 1) // 1-200的尺寸
-      
-      sizes.forEach(size => {
-        const className = `.scale-${size}`
-        scaleUtilities[className] = {
-          // 计算方式与SCSS中的scaleValue相同
-          width: `calc(${size}px * (clamp(320px, 100vw, 3480px) / var(--ideal-viewport-width)))`,
-          height: `calc(${size}px * (clamp(320px, 100vw, 3480px) / var(--ideal-viewport-width)))`,
-        }
-        
-        // 添加单独的宽度和高度类
-        scaleUtilities[`.scale-w-${size}`] = {
-          width: `calc(${size}px * (clamp(320px, 100vw, 3480px) / var(--ideal-viewport-width)))`,
-        }
-        
-        scaleUtilities[`.scale-h-${size}`] = {
-          height: `calc(${size}px * (clamp(320px, 100vw, 3480px) / var(--ideal-viewport-width)))`,
-        }
-        
-        // 添加内边距/外边距类
-        scaleUtilities[`.scale-p-${size}`] = {
-          padding: `calc(${size}px * (clamp(320px, 100vw, 3480px) / var(--ideal-viewport-width)))`,
-        }
-        
-        scaleUtilities[`.scale-m-${size}`] = {
-          margin: `calc(${size}px * (clamp(320px, 100vw, 3480px) / var(--ideal-viewport-width)))`,
-        }
-        
-        // 字体大小
-        scaleUtilities[`.scale-text-${size}`] = {
-          fontSize: `calc(${size}px * (clamp(320px, 100vw, 3480px) / var(--ideal-viewport-width)))`,
-        }
-      })
-      
-      addUtilities(scaleUtilities)
-    }),
-    
-    // 添加CSS变量
-    plugin(function({ addBase, theme }) {
-      addBase({
-        ':root': {
-          '--ideal-viewport-width': theme('variables.--ideal-viewport-width'),
-        }
-      })
-    })
-  ],
+:root {
+  --min-viewport: 320px;
+  --max-viewport: 3480px;
+  --ideal-viewport: 1600;
+  --scale-ratio: calc(clamp(var(--min-viewport), 100vw, var(--max-viewport)) / var(--ideal-viewport));
 }
 
+@layer utilities {
+  /* 动态计算的基础选择器 */
+  [class*="sv-w-"] {
+    width: calc(var(--sv-width, 0) * var(--scale-ratio));
+  }
+
+  [class*="sv-h-"] {
+    height: calc(var(--sv-height, 0) * var(--scale-ratio));
+  }
+
+  [class*="sv-text-"] {
+    font-size: calc(var(--sv-font-size, 0) * var(--scale-ratio));
+  }
+
+  [class*="sv-mt-"] {
+    margin-top: calc(var(--sv-margin-top, 0) * var(--scale-ratio));
+  }
+
+  [class*="sv-mb-"] {
+    margin-bottom: calc(var(--sv-margin-bottom, 0) * var(--scale-ratio));
+  }
+
+  [class*="sv-mr-"] {
+    margin-right: calc(var(--sv-margin-right, 0) * var(--scale-ratio));
+  }
+
+  [class*="sv-p-"] {
+    padding: calc(var(--sv-padding, 0) * var(--scale-ratio));
+  }
+
+  [class*="sv-px-"] {
+    padding-left: calc(var(--sv-padding-x, 0) * var(--scale-ratio));
+    padding-right: calc(var(--sv-padding-x, 0) * var(--scale-ratio));
+  }
+
+  [class*="sv-py-"] {
+    padding-top: calc(var(--sv-padding-y, 0) * var(--scale-ratio));
+    padding-bottom: calc(var(--sv-padding-y, 0) * var(--scale-ratio));
+  }
+
+  [class*="sv-pl-"] {
+    padding-left: calc(var(--sv-padding-left, 0) * var(--scale-ratio));
+  }
+
+  [class*="sv-pr-"] {
+    padding-right: calc(var(--sv-padding-right, 0) * var(--scale-ratio));
+  }
+
+  [class*="sv-rounded-"] {
+    border-radius: calc(var(--sv-radius, 0) * var(--scale-ratio));
+  }
+
+  /* 预设值 - 宽度 */
+  .sv-w-692 { --sv-width: 692; }
+  .sv-w-96 { --sv-width: 96; }
+  .sv-w-50 { --sv-width: 50; }
+  .sv-w-44 { --sv-width: 44; }
+  .sv-w-36 { --sv-width: 36; }
+  .sv-w-12 { --sv-width: 12; }
+
+  /* 预设值 - 高度 */
+  .sv-h-80 { --sv-height: 80; }
+  .sv-h-50 { --sv-height: 50; }
+  .sv-h-44 { --sv-height: 44; }
+  .sv-h-36 { --sv-height: 36; }
+  .sv-h-12 { --sv-height: 12; }
+
+  /* 预设值 - 字体大小 */
+  .sv-text-40 { --sv-font-size: 40; }
+  .sv-text-22 { --sv-font-size: 22; }
+  .sv-text-20 { --sv-font-size: 20; }
+  .sv-text-18 { --sv-font-size: 18; }
+  .sv-text-16 { --sv-font-size: 16; }
+  .sv-text-15 { --sv-font-size: 15; }
+  .sv-text-14 { --sv-font-size: 14; }
+
+  /* 预设值 - 边距 */
+  .sv-mt-32 { --sv-margin-top: 32; }
+  .sv-mb-50 { --sv-margin-bottom: 50; }
+  .sv-mb-32 { --sv-margin-bottom: 32; }
+  .sv-mb-20 { --sv-margin-bottom: 20; }
+  .sv-mb-12 { --sv-margin-bottom: 12; }
+  .sv-mb-6 { --sv-margin-bottom: 6; }
+  .sv-mr-9 { --sv-margin-right: 9; }
+  .sv-mr-8 { --sv-margin-right: 8; }
+  .sv-mr-6 { --sv-margin-right: 6; }
+
+  /* 预设值 - 内边距 */
+  .sv-p-20 { --sv-padding: 20; }
+  .sv-p-16 { --sv-padding: 16; }
+  .sv-px-40 { --sv-padding-x: 40; }
+  .sv-px-10 { --sv-padding-x: 10; }
+  .sv-py-20 { --sv-padding-y: 20; }
+  .sv-py-5 { --sv-padding-y: 5; }
+  .sv-pl-136 { --sv-padding-left: 136; }
+  .sv-pr-30 { --sv-padding-right: 30; }
+
+  /* 预设值 - 圆角 */
+  .sv-rounded-20 { --sv-radius: 20; }
+  .sv-rounded-10 { --sv-radius: 10; }
+  .sv-rounded-4 { --sv-radius: 4; }
+
+  /* 同时设置宽高的特殊情况 */
+  .sv-50 {
+    --sv-width: 50;
+    --sv-height: 50;
+    width: calc(var(--sv-width) * var(--scale-ratio));
+    height: calc(var(--sv-height) * var(--scale-ratio));
+  }
+}
 ```
 
-```html
-<!-- 原SCSS: width: #{scaleValue(44)}; -->
-<div class="scale-w-44 scale-h-44 rounded-full overflow-hidden"></div>
 
-<!-- 原SCSS: font-size: #{scaleValue(16)}; -->
-<p class="scale-text-16">文本内容</p>
-
-<!-- 原SCSS: padding: #{scaleValue(16)} #{scaleValue(20)}; -->
-<div class="scale-p-16 scale-px-20">内容区域</div>
-
-```
 
 ### Tailwind Css v4 参考
 https://www.youtube.com/watch?v=6biMWgD6_JY
