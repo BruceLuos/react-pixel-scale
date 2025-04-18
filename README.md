@@ -74,6 +74,7 @@ export default tseslint.config({
 ```
 
 在tailwind css v4中设置
+目前暂不支持自定义值，需要先预设（后续再调整）
 ```css
 @import "tailwindcss";
 
