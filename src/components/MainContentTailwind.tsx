@@ -79,20 +79,22 @@ const MainContentTailwind: React.FC<MainContentTailwindProps> = ({
 
     return (
       <li
-        className="flex items-center justify-between sv-py-20 border-b border-black/10"
+        className="flex items-center justify-between sv-py-20 border-b border-black/12 last:border-b-0"
         key={index}
       >
         <div className="w-[30%] flex items-center">
           <img className="sv-50 rounded-full" src={profilePic} alt="Profile" />
         </div>
         <div className="w-[30%] flex items-center">
-          <h5 className="sv-text-18 text-black/70">{date}</h5>
+          <h5 className="sv-text-18 text-black/72 font-normal">{date}</h5>
         </div>
         <div className="w-[30%] flex items-center">
-          <h5 className="sv-text-18 text-black/70">{time}</h5>
+          <h5 className="sv-text-18 text-black/72 font-normal">{time}</h5>
         </div>
         <div className="w-[30%] flex items-center justify-end">
-          <h6 className={`sv-text-22 ${priceColor}`}>{formatPrice}</h6>
+          <h6 className={`sv-text-22 ${priceColor} w-full flex justify-end`}>
+            {formatPrice}
+          </h6>
         </div>
       </li>
     );
@@ -106,23 +108,26 @@ const MainContentTailwind: React.FC<MainContentTailwindProps> = ({
     const isPoster = Math.random() < 0.5;
 
     return (
-      <div className="relative sv-mb-50 sv-rounded-10 overflow-hidden bg-white">
+      <div
+        className="relative sv-mb-50 sv-rounded-10 overflow-hidden bg-white"
+        key={`${colIndex}-${itemIndex}`}
+      >
         {isPoster && (
           <img
-            className="absolute inset-0 w-full h-full object-cover z-10"
+            className="absolute inset-0 w-full h-full object-cover z-[1]"
             src={`https://picsum.photos/200/${300 + colIndex + itemIndex}`}
             alt="Background"
           />
         )}
         <div
-          className={`relative z-20 sv-p-20 ${
+          className={`relative z-[2] sv-p-16 sv-px-20 ${
             isPoster ? "bg-black/30 text-white" : ""
           }`}
         >
-          <ul className="flex flex-wrap sv-mb-32">
+          <ul className="flex flex-wrap">
             {tags.map((tag, idx) => (
               <li
-                className="inline-block sv-mr-6 sv-mb-6 sv-px-10 sv-py-5 sv-rounded-4 sv-text-15"
+                className="inline-block sv-mr-6 sv-mb-6 sv-px-10 sv-py-5 sv-rounded-4 sv-text-15 text-[#111] last:mr-0"
                 key={idx}
                 style={{ backgroundColor: tag.color }}
               >
@@ -134,7 +139,7 @@ const MainContentTailwind: React.FC<MainContentTailwindProps> = ({
           <p className="sv-text-16">{paragraph}</p>
           {!isPoster && (
             <button className="sv-mt-32 sv-text-20 text-[#4339F2] bg-transparent border-0">
-              Details
+              Detalies
             </button>
           )}
         </div>
@@ -143,9 +148,9 @@ const MainContentTailwind: React.FC<MainContentTailwindProps> = ({
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
-      <nav className="fixed top-0 left-0 sv-w-96 h-screen bg-white sv-rounded-20">
-        <div className="sv-h-80 border-b border-black/12 sv-mb-20 flex justify-center items-center">
+    <div className="flex min-h-screen bg-[#F2F2F2]">
+      <nav className="fixed top-0 left-0 sv-w-96 h-screen bg-white sv-rounded-20 flex items-center flex-col">
+        <div className="sv-h-80 border-b border-black/12 sv-mb-20 flex justify-center items-center w-full">
           <div className="sv-w-36 sv-h-36 rounded-full bg-black/12"></div>
         </div>
         <ul className="flex flex-col items-center">
@@ -160,10 +165,10 @@ const MainContentTailwind: React.FC<MainContentTailwindProps> = ({
       </nav>
 
       <main className="sv-pl-136 sv-pr-30 flex-1">
-        <header className="flex justify-between items-center sv-pr-18">
+        <header className="flex justify-between items-center sv-py-18">
           <div className="flex items-center">
             <svg
-              className="sv-w-36 sv-h-36 sv-mr-8"
+              className="sv-w-36 sv-h-36 sv-mr-8 block"
               viewBox="0 0 18 18"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -175,7 +180,7 @@ const MainContentTailwind: React.FC<MainContentTailwindProps> = ({
                 fill="black"
               />
             </svg>
-            <h5 className="sv-text-14 text-black/70">Search</h5>
+            <h5 className="sv-text-14 text-black/72">Search</h5>
           </div>
 
           <ul className="flex">
@@ -204,7 +209,7 @@ const MainContentTailwind: React.FC<MainContentTailwindProps> = ({
 
         <div className="flex justify-between sv-mb-50">
           <div className="sv-w-692 bg-white sv-rounded-10 sv-py-5 sv-px-40">
-            <h3 className="sv-text-22 sv-mb-12 font-normal text-black/70">
+            <h3 className="sv-text-22 sv-mb-12 font-normal text-black/72">
               Telescope
             </h3>
             <ul>
@@ -215,7 +220,7 @@ const MainContentTailwind: React.FC<MainContentTailwindProps> = ({
           </div>
 
           <div className="sv-w-692 bg-white sv-rounded-10 sv-py-5 sv-px-40">
-            <h3 className="sv-text-22 sv-mb-12 font-normal text-black/70">
+            <h3 className="sv-text-22 sv-mb-12 font-normal text-black/72">
               Asteroids
             </h3>
             <ul>
@@ -226,7 +231,7 @@ const MainContentTailwind: React.FC<MainContentTailwindProps> = ({
           </div>
         </div>
 
-        <div className="flex justify-between">
+        <div className="flex items-start justify-between">
           {Array(columnsCount)
             .fill(null)
             .map((_, colIndex) => {

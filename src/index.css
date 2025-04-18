@@ -7,6 +7,28 @@
   --scale-ratio: calc(clamp(var(--min-viewport), 100vw, var(--max-viewport)) / var(--ideal-viewport));
 }
 
+/* Custom base styles that don't conflict with Tailwind */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+body {
+  font-family: 'Hind', sans-serif;
+  background: #F2F2F2;
+}
+
+.root {
+  display: flex;
+}
+
+
 @layer utilities {
   /* 动态计算的基础选择器 */
   [class*="sv-w-"] {
@@ -116,46 +138,4 @@
     width: calc(var(--sv-width) * var(--scale-ratio));
     height: calc(var(--sv-height) * var(--scale-ratio));
   }
-}
-
-/* Custom base styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  list-style: none;
-}
-
-button {
-  cursor: pointer;
-}
-
-body {
-  font-family: 'Hind', sans-serif;
-  background: #F2F2F2;
-}
-
-.root {
-  display: flex;
-}
-
-/* Custom base styles that don't conflict with Tailwind */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  list-style: none;
-}
-
-button {
-  cursor: pointer;
-}
-
-body {
-  font-family: 'Hind', sans-serif;
-  background: #F2F2F2;
-}
-
-.root {
-  display: flex;
 }
